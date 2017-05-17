@@ -353,18 +353,17 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
-    //var set = Array.isArray(obj) ? obj : _.values(obj);
-    //var length = set.length;
-    var shuffled = array.length;
-    for (var index = 0, rand; index < length; index++) {
-      console.log(rand);
-      rand = _.random(0, index);
-      if (rand !== index) {
-        shuffled[index] = shuffled[rand];
+    let copyArr = array.slice(0);
+    //Math.floor(Math.random() * (max - min)) + min;
+    let result = [];
+    let newIndex = 'start';
+    _.each(copyArr, function(value, index) {
+      while (newIndex === 'start' || result[newIndex] !== undefined) {
+        newIndex = Math.floor(Math.random() * copyArr.length);
       }
-      shuffled[rand] = set[index];
-    }
-    return shuffled;
+      result[newIndex] = value;
+    });
+    return result;
   };
 
 
